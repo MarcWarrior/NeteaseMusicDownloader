@@ -28,4 +28,8 @@ $ python netease.py
 
 音乐会下载到同级目录的Musics文件夹中，Enjoy it！
 
+# Credits
+本项目基于以下项目开发，向开发者表示感谢。
+- <https://github.com/Jack-Cherish/python-spider/blob/master/Netease/Netease.py>
+
 # License
