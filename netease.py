@@ -285,3 +285,5 @@ if __name__ == '__main__':
             Printer().error('music_list.txt needed.')
     else:
         Printer().error('Python3.7+ needed.')
+
+    input('Please press Enter to exit.')
