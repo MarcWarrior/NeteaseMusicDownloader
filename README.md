@@ -33,3 +33,4 @@ $ python netease.py
 - <https://github.com/Jack-Cherish/python-spider/blob/master/Netease/Netease.py>
 
 # License
+![MIT](https://img.shields.io/github/license/MarcWarrior/NeteaseMusicDownloader.svg?style=flat)
