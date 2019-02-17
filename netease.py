@@ -279,6 +279,9 @@ def run():
 
 if __name__ == '__main__':
     if sys.version_info[0] == 3 and sys.version_info[1] >= 7:
-        run()
+        if os.path.exists('music_list.txt'):
+            run()
+        else:
+            Printer().error('music_list.txt needed.')
     else:
         Printer().error('Python3.7+ needed.')
