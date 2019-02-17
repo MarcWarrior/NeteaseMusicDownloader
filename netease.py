@@ -261,7 +261,8 @@ def run():
     _music_list = []
     with codecs.open('music_list.txt', 'r', encoding=charset['encoding']) as f1:
         for line in f1.readlines():
-            _music_list.append(line)
+            if line.strip():
+                _music_list.append(line.strip())
 
     # 去重排序
     # music_list = list(set(_music_list))  # 随机顺序排序
