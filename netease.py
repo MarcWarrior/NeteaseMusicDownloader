@@ -219,7 +219,7 @@ class Netease:
         try:
             song = await self.crawler.search_song(song_name, self.quiet)
         except Exception as e:
-            Printer().error('search_song', e)
+            Printer().error(e)
 
         # 如果找到了音乐, 则下载
         if song is not None:
@@ -238,7 +238,7 @@ class Netease:
             song.song_name = song_name.replace('.', '')
             await self.crawler.get_song_by_url(url, song, folder)
         except Exception as e:
-            Printer().error('get_song', e)
+            Printer().error(e)
 
 
 def exec_time(func):
