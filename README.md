@@ -23,6 +23,7 @@ pip3 install -r requirements.txt
 ```
 $ python netease.py
 ```
+或者下载release中的exe版本运行
 
 音乐会下载到同级目录的Musics文件夹中，Enjoy it！
 
