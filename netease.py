@@ -136,16 +136,16 @@ class Crawler:
                 author_name = songs[0]['ar'][0]['name']
                 return Song(song_id=song_id, song_name=song_name, song_author=author_name)
 
-    async def get_song_url(self, song_id, bit_rate=320000):
+    async def get_song_url(self, song: Song, bit_rate=320000):
         """
         获得歌曲的下载地址
-        :params song_id: 音乐ID<int>.
+        :params song: Song class
         :params bit_rate: {'MD 128k': 128000, 'HD 320k': 320000}
         :return: 歌曲下载地址
         """
         url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
         csrf = ''
-        params = {'ids': [song_id], 'br': bit_rate, 'csrf_token': csrf}
+        params = {'ids': [song.song_id], 'br': bit_rate, 'csrf_token': csrf}
         result = await self.post_request(url, params)
 
         # 歌曲下载地址
@@ -153,7 +153,7 @@ class Crawler:
 
         # 歌曲不存在
         if song_url is None:
-            Printer().error('歌曲因版权问题无法下载')
+            Printer().error(f'歌曲 [{song.song_name}] 因版权问题无法下载')
         else:
             return song_url
 
@@ -219,7 +219,7 @@ class Netease:
         try:
             song = await self.crawler.search_song(song_name, self.quiet)
         except Exception as e:
-            Printer().error(e)
+            Printer().error('search_song', e)
 
         # 如果找到了音乐, 则下载
         if song is not None:
@@ -232,13 +232,13 @@ class Netease:
         :params folder: 保存地址
         """
         try:
-            url = await self.crawler.get_song_url(song.song_id)
+            url = await self.crawler.get_song_url(song)
             # 去掉非法字符
             song_name = song.song_name.replace('/', '')
             song.song_name = song_name.replace('.', '')
             await self.crawler.get_song_by_url(url, song, folder)
         except Exception as e:
-            Printer().error(e)
+            Printer().error('get_song', e)
 
 
 def exec_time(func):
@@ -287,4 +287,4 @@ if __name__ == '__main__':
     else:
         Printer().error('Python3.7+ needed.')
 
-    input('Please press Enter to exit.')
+    input('Please press Enter to exit:')
