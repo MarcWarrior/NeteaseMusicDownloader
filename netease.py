@@ -278,4 +278,7 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    if sys.version_info[0] == 3 and sys.version_info[1] >= 7:
+        run()
+    else:
+        Printer().error('Python3.7+ needed.')
