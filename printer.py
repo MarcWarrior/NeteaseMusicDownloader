@@ -37,3 +37,6 @@ class Printer:
 
     def warning(self, _msg, log=False):
         self.printer(_msg, 'Warning', 'yellow', log)
+
+    def notice(self, _msg, log=False):
+        self.printer(_msg, 'Notice', 'cyan', log)

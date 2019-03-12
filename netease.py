@@ -234,9 +234,10 @@ class Netease:
         try:
             url = await self.crawler.get_song_url(song)
             # 去掉非法字符
-            song_name = song.song_name.replace('/', '')
-            song.song_name = song_name.replace('.', '')
-            await self.crawler.get_song_by_url(url, song, folder)
+            if url:
+                song_name = song.song_name.replace('/', '')
+                song.song_name = song_name.replace('.', '')
+                await self.crawler.get_song_by_url(url, song, folder)
         except Exception as e:
             Printer().error(e)
 
